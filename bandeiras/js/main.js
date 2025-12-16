@@ -1,23 +1,53 @@
-// main.js
-import { countries } from "./data.js";
 import { CountryCard } from "./components/CountryCard.js";
 
-// Seleciona o div onde os cards serão colocados
-const div = document.querySelector("#flags-cards");
+console.log("✅ main.js está rodando");
 
-// Gera todos os cards com base nos dados
-const allCards = countries.map(country => CountryCard(country));
+const container = document.getElementById("flags-cards");
+const searchInput = document.getElementById("search");
 
-// Junta tudo e coloca dentro da div
-div.innerHTML = allCards.join("");
+let countries = [];
 
-// Exemplo: adicionando um novo país dinamicamente
-const newCountry = {
-    code: "IT",
-    name: "Itália",
-    flag: "https://flagcdn.com/w320/it.png",
-    continent: "Europa"
-};
+async function fetchCountries() {
+    try {
+        const response = await fetch(
+            "https://restcountries.com/v3.1/all?fields=cca2,name,flags,region"
+        );
 
-// Adiciona o novo card no início da página
-div.insertAdjacentHTML("afterbegin", CountryCard(newCountry));
+        if (!response.ok) {
+            throw new Error("Erro ao buscar países");
+        }
+
+        const data = await response.json();
+
+        console.log("dados da API:", data);
+
+        countries = data.map(country => ({
+            code: country.cca2,
+            name: country.name.common,
+            flag: country.flags.png,
+            continent: country.region || "N/A"
+        }));
+
+        renderCountries(countries);
+    } catch (error) {
+        console.error("❌ ERRO NO FETCH:", error);
+    }
+}
+
+function renderCountries(list) {
+    console.log("renderizando", list.length, "países");
+    container.innerHTML = list.map(CountryCard).join("");
+}
+
+searchInput.addEventListener("input", () => {
+    const value = searchInput.value.toLowerCase();
+
+    const filtered = countries.filter(country =>
+        country.name.toLowerCase().includes(value)
+    );
+
+    renderCountries(filtered);
+});
+
+fetchCountries();
+

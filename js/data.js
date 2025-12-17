@@ -202,7 +202,49 @@ const countries = [
         "name": "Solomon Islands",
         "flag": "https://flagcdn.com/w320/sb.png",
         "continent": "Oceania"
-    }
+    },
+    {
+        "code": "EG",
+        "name": "Egito",
+        "flag": "https://flagcdn.com/w320/eg.png",
+        "continent": "África"
+    },
+    {
+        "code": "DE",
+        "name": "Alemanha",
+        "flag": "https://flagcdn.com/w320/de.png",
+        "continent": "Europa"
+    },
+    {
+        "code": "JP",
+        "name": "Japão",
+        "flag": "https://flagcdn.com/w320/jp.png",
+        "continent": "Ásia"
+    },
+    {
+        "code": "BR",
+        "name": "Brasil",
+        "flag": "https://flagcdn.com/w320/br.png",
+        "continent": "América"
+    },
+    {
+        "code": "US",
+        "name": "Estados Unidos",
+        "flag": "https://flagcdn.com/w320/us.png",
+        "continent": "América"
+    },
+    {
+        "code": "US",
+        "name": "Estados Unidos",
+        "flag": "https://flagcdn.com/w320/us.png",
+        "continent": "América"
+    },
+    {
+        "code": "AR",
+        "name": "Argentina",
+        "flag": "https://flagcdn.com/w320/ar.png",
+        "continent": "América do Sul"
+    },
 ];
 
 
